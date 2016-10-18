@@ -33,7 +33,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'interactive_editor'
 gem 'awesome_print'
 gem 'hirb'
-
+gem 'faker'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
