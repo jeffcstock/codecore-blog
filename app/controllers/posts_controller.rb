@@ -3,7 +3,7 @@ class PostsController < ApplicationController
     @post = Post.order(created_at: :desc).limit(POSTS_PER_PAGE).offset(@page.to_i * POSTS_PER_PAGE)
     @posts = Post.search(params[:search])
   end
-  before_filter :set_page, only: [:index]
+  before_action :set_page, only: [:index]
     POSTS_PER_PAGE = 10
 
   def new
