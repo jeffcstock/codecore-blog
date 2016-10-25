@@ -8,7 +8,8 @@
 
 200.times do
   Post.create({ title: Faker::Company.catch_phrase,
-                body:  Faker::Hacker.say_something_smart })
+                body:  Faker::Hacker.say_something_smart,
+                user_id: rand(4) })
 end
 
 puts '200 Posts created!'

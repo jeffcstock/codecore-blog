@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+
   def index
     @post = Post.order(created_at: :desc).limit(POSTS_PER_PAGE).offset(@page.to_i * POSTS_PER_PAGE)
     @posts = Post.search(params[:search])
@@ -11,9 +13,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    post_params = params.require(:post).permit([:title, :body])
+    post_params = params.require(:post).permit([:title, :body, :user_id])
     @post = Post.new post_params
-
+    @post.user = current_user
     if @post.save
       redirect_to post_path(@post)
     else
@@ -23,6 +25,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find params[:id]
+    @comment = Comment.new
   end
 
   def edit
