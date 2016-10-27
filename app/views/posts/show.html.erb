@@ -2,9 +2,11 @@
 <p><%= @post.body %></p>
 <p><%= @post.user.first_name %></p>
 
+<% if can? :manage, @post %>
 <%= link_to 'Edit blog post', edit_post_path(@post) %>
 |
 <%= link_to 'Delete blog post', post_path(@post), method: :delete, data: { confirm: 'Do you want to delete?'} %>
+<% end %>
 
 <% unless @post.comments.empty? %>
   <h3>Comments</h3>
@@ -17,17 +19,21 @@
         Commented by <%= p.user.first_name %> <%= p.user.last_name %> on <%= p.created_at %>
       </p>
     </div>
-    <div>
-      <%= link_to 'Delete', post_comment_path(@post, p), method: :delete, data: { confirm: 'You sure you wanna delete this amazing comment??'} %>
-    </div>
+    <% if can? :destroy, p %>
+      <div>
+        <%= link_to 'Delete', post_comment_path(@post, p), method: :delete, data: { confirm: 'You sure you wanna delete this amazing comment??'} %>
+      </div>
+    <% end %>
   <% end %>
 <% end %>
 
-<h2>Create a Comment</h2>
-<%= form_for [@post, @comment] do |f| %>
-<div>
-    <%= f.label :body %><br />
-    <%= f.text_area :body %>
-</div>
-  <%= f.submit %>
+<% if user_signed_in? %>
+  <h2>Create a Comment</h2>
+  <%= form_for [@post, @comment] do |f| %>
+  <div>
+      <%= f.label :body %><br />
+      <%= f.text_area :body %>
+  </div>
+    <%= f.submit %>
+  <% end %>
 <% end %>

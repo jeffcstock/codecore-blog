@@ -1,17 +1,18 @@
 <h1>Edit Password</h1>
-<%= form_tag password_path %>
+<%= form_for @user, url: password_path(@user) do |f| %>
   <div>
-    <%= label_tag :old_password %>
-    <%= password_field_tag :old_password %>
+    <%= f.label :current_password %>
+    <%= f.password_field :current_password %>
   </div>
   <div>
-    <%= label_tag :new_password %>
-    <%= password_field_tag :new_password %>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
   </div>
   <div>
-    <%= label_tag :confirm_password %>
-    <%= password_field_tag :confirm_password %>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
   </div>
   <div>
-    <%= submit_tag %>
+    <%= submit_tag 'Change Password' %>
   </div>
+<% end %>

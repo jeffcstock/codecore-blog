@@ -9,27 +9,41 @@
   </head>
 
   <body>
-    <%= link_to 'Home', root_path %>
-    |
-    <%= link_to 'Posts', posts_path %>
-    |
-    <%= link_to 'New Post', new_post_path %>
-    |
-    <% if user_signed_in? %>
-      <%= link_to 'Sign out', sessions_path, method: :delete %>
-      |
-      <%= link_to 'User Settings', edit_user_path(current_user) %>
-    <% else %>
-      <%= link_to 'Sign Up', new_user_path %>
-      |
-      <%= link_to 'Sign In', new_session_path %>
-    <% end %>
-    <h4><%= current_user.first_name %> <%= current_user.last_name %>
-</h4>
-    <hr />
-    <div>
-      <%= notice || alert %>
+    <div class="container-fluid">
+
+      <div class="row start-xs">
+        <div class="col-xs-9">
+          <div class="logo">
+            <%= link_to 'Blog', root_path %>
+          </div>
+        </div>
+        <div class="col-xs-12
+                col-sm-8
+                col-md-6
+                col-lg-4">
+          <div class="nav">
+            <%= link_to 'Posts', posts_path %>
+            |
+            <%= link_to 'New Post', new_post_path %>
+            |
+            <% if user_signed_in? %>
+            <%= link_to 'Sign out', sessions_path, method: :delete %>
+            |
+            <%= link_to 'User Settings', edit_user_path(current_user) %>
+            <h4><%= current_user.first_name %> <%= current_user.last_name %></h4>
+            <% else %>
+            <%= link_to 'Sign Up', new_user_path %>
+            |
+            <%= link_to 'Sign In', new_session_path %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div>
+        <%= notice || alert %>
+      </div>
+      <%= yield %>
     </div>
-    <%= yield %>
   </body>
 </html>

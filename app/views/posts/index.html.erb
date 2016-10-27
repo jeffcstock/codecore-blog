@@ -1,34 +1,38 @@
-<h1>All Blog Posts</h1>
-
-<%= form_tag posts_path, :method => 'get' do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search" %>
-  </p>
-<% end %>
-
-<% if params[:search].present? %>
-  <% if @posts.present? %>
-    <% @posts.each do |p| %>
-      <%= link_to p.title, post_path(p) %>
-      <hr />
-    <% end %>
-  <% else %>
-    <p>There are no users containing the term(s) <%= params[:search] %>.</p>
-  <% end %>
-<% else %>
-   <% @post.each do |p| %>
-   <%= link_to p.title, post_path(p) %>
-   <hr/>
-   <% end %>
-
-   <div id = "nav">
-     <% if @page.to_i > 0 %>
-     <button><%= link_to 'Newest', posts_path %></button>
-     <button><%= link_to 'Previous 10 posts', posts_path(page: @page.to_i - 1) %></button>
-     <% end %>
-     <% if @post.length != 0 %>
-     <button><%= link_to "Next 10 posts", posts_path(page: @page.to_i + 1) %></button>
+<div class="header">
+  <h1>All</h1>
+  <div class="search">
+    <%= form_tag posts_path, :method => 'get' do %>
+    <p>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag "Search" %>
+    </p>
     <% end %>
   </div>
-<% end %>
+</div>
+
+
+  <% if params[:search].present? %>
+  <% if @posts.present? %>
+  <% @posts.each do |p| %>
+  <%= link_to p.title, post_path(p) %>
+  <hr />
+  <% end %>
+  <% else %>
+  <p>There are no users containing the term(s) <%= params[:search] %>.</p>
+  <% end %>
+  <% else %>
+  <% @post.each do |p| %>
+  <%= link_to p.title, post_path(p) %>
+  <hr/>
+  <% end %>
+
+  <div id = "nav">
+    <% if @page.to_i > 0 %>
+    <button><%= link_to 'Newest', posts_path %></button>
+    <button><%= link_to 'Previous 10 posts', posts_path(page: @page.to_i - 1) %></button>
+    <% end %>
+    <% if @post.length != 0 %>
+    <button><%= link_to "Next 10 posts", posts_path(page: @page.to_i + 1) %></button>
+    <% end %>
+  </div>
+  <% end %>

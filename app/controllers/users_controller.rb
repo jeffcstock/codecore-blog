@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   end
   def update
     @user = User.find params[:id]
+    # current_password = params.dig(:user, :password)
     user_params = params.require(:user).permit(:first_name, :last_name, :email)
     if @user.update user_params
       redirect_to root_path, notice: 'User updated'

@@ -1,3 +1,62 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$primary-font: 'Avenir';
+$background-color: white;
+$heading-font-color: rgb(111, 111, 111);
+$body-font-color: rgb(70, 70, 70);
+$light-medium: rgb(186, 186, 186);
+
+.container-fluid {
+  width: 80%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+ body {
+   font-family: $primary-font;
+   background-color: $background-color;
+   color: $body-font-color;
+ }
+
+ a {
+  text-decoration: none;
+  color: $body-font-color;
+}
+
+hr {
+  border-top: .5px solid $light-medium;
+}
+ nav {
+
+ }
+
+ .logo {
+   font-size: 1.7em;
+   padding-bottom: .3em;
+   font-weight: bold;
+ }
+
+ input {
+   border: 0;
+   padding: .6em;
+   border-radius: .3em;
+   background-color: none;
+   color: $body-font-color;
+   font-size: 14px;
+   background-color: transparent;
+   border: 1px solid $light-medium;
+   font-family: $primary-font;
+   &:hover {
+     border: 1px solid $body-font-color;
+     cursor: pointer;
+   }
+ }
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
