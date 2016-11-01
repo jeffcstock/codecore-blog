@@ -7,6 +7,7 @@ $background-color: white;
 $heading-font-color: rgb(111, 111, 111);
 $body-font-color: rgb(70, 70, 70);
 $light-medium: rgb(186, 186, 186);
+$link-color: rgb(40, 0, 198);
 
 .container-fluid {
   width: 80%;
@@ -59,4 +60,27 @@ hr {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+
+.message {
+  border: 1px solid;
+  border-radius: .3em;
+  padding: .6em;
+  font-size: 18px;
+  margin-top: 15px;
+  font-weight: bolder;
+}
+
+.notice {
+  border-color: rgb(12, 178, 231);
+}
+
+.user-display {
+  align-self: flex-end;
+}
+
+.content {
+  a:hover {
+    color: $link-color;
+  }
 }

@@ -28,6 +28,7 @@ class PostsController < ApplicationController
 
   def show
     @comment = Comment.new
+    @fav = @post.fav_for(current_user)
   end
 
   def edit
@@ -36,7 +37,7 @@ class PostsController < ApplicationController
   def update
     post_params = params.require(:post).permit(:title, :body)
     if @post.update post_params
-      redirect_to post_path(@post)
+      redirect_to post_path(@post), notice: 'Post updated! ✔️'
     else
       render :edit
     end

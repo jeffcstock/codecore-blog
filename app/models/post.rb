@@ -1,6 +1,9 @@
 class Post < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
+  has_many :favourites, dependent: :destroy
+  has_many :favouriters, through: :favourites, source: :user
+
   validates :title, presence: true,
                     uniqueness: {case_sensitive: false},
                     length: {minimum: 3}
@@ -16,6 +19,10 @@ class Post < ApplicationRecord
     unless body_length < 100
       self.body[0...100] + '...'
     end
+  end
+
+  def fav_for(user)
+    favourites.find_by(user: user)
   end
 
 end

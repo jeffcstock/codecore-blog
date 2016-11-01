@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
     @comment.post = @post
     @comment.user = current_user
     if @comment.save
-      redirect_to post_path(@post), notice: 'Comment created!'
+      redirect_to post_path(@post), notice: 'Comment created! 🙏🏼'
     else
       render 'posts/show'
     end
@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
     comment = Comment.find params[:id]
     if can? :destroy, comment
       comment.destroy
-      redirect_to post_path(post), notice: 'Comment deleted'
+      redirect_to post_path(post), notice: 'Comment deleted 🙅🏽‍'
     else
       redirect_to root_path, notice: 'Access Denied.'
     end

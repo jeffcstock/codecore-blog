@@ -25,5 +25,7 @@ class UsersController < ApplicationController
       render :edit
     end
   end
-
+  def favourite_posts
+    @favourites = current_user.favourited_posts
+  end
 end

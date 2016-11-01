@@ -27,23 +27,35 @@
             <%= link_to 'New Post', new_post_path %>
             |
             <% if user_signed_in? %>
-            <%= link_to 'Sign out', sessions_path, method: :delete %>
-            |
-            <%= link_to 'User Settings', edit_user_path(current_user) %>
-            <h4><%= current_user.first_name %> <%= current_user.last_name %></h4>
+              <%= link_to 'Sign out', sessions_path, method: :delete %>
+              |
+              <%= link_to 'User Settings', edit_user_path(current_user) %>
+              |
+              <%= link_to 'Favourite Blog Posts', favourite_posts_users_path %>
+              <div class="user-display">
+                <h4>Hello, <%= current_user.first_name %> <%= current_user.last_name %></h4>
+              </div>
             <% else %>
-            <%= link_to 'Sign Up', new_user_path %>
-            |
-            <%= link_to 'Sign In', new_session_path %>
+              <%= link_to 'Sign Up', new_user_path %>
+              |
+              <%= link_to 'Sign In', new_session_path %>
             <% end %>
           </div>
         </div>
       </div>
       <hr />
-      <div>
-        <%= notice || alert %>
+      <% if notice %>
+        <div class="message notice">
+          <%= notice %>
+        </div>
+      <% elsif alert %>
+        <div class="message alert">
+          <%= alert %>
+        </div>
+      <% end %>
+      <div class="content">
+        <%= yield %>
       </div>
-      <%= yield %>
     </div>
   </body>
 </html>

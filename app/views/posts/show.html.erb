@@ -2,10 +2,20 @@
 <p><%= @post.body %></p>
 <p><%= @post.user.first_name %></p>
 
+<% if user_signed_in? && can?(:favourite, @post) %>
+  <% if @fav.present? %>
+    <%= link_to '💔 Unfavourite this', post_favourite_path(@post, @fav), method: :delete %>
+  <% else %>
+    <%= link_to '❤️ Favourite this', post_favourites_path(@post), method: :post %>
+  <% end %>
+<% end %>
+
+(<%= pluralize @post.favourites.count, "favourite" %>)
+
 <% if can? :manage, @post %>
-<%= link_to 'Edit blog post', edit_post_path(@post) %>
+  <%= link_to 'Edit blog post', edit_post_path(@post) %>
 |
-<%= link_to 'Delete blog post', post_path(@post), method: :delete, data: { confirm: 'Do you want to delete?'} %>
+  <%= link_to 'Delete blog post', post_path(@post), method: :delete, data: { confirm: 'Do you want to delete?'} %>
 <% end %>
 
 <% unless @post.comments.empty? %>
@@ -14,11 +24,13 @@
     <div>
       <h5><%= p.body  %></h5>
     </div>
-    <div>
-      <p>
-        Commented by <%= p.user.first_name %> <%= p.user.last_name %> on <%= p.created_at %>
-      </p>
-    </div>
+    <% if p.user %>
+      <div>
+        <p>
+          Commented by <%= p.user.first_name %> <%= p.user.last_name %> on <%= p.created_at %>
+        </p>
+      </div>
+    <% end %>
     <% if can? :destroy, p %>
       <div>
         <%= link_to 'Delete', post_comment_path(@post, p), method: :delete, data: { confirm: 'You sure you wanna delete this amazing comment??'} %>
