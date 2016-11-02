@@ -7,5 +7,16 @@
     <%= p.label :body %>
     <%= p.text_area :body %>
   </div>
+  <div>
+    <%= p.collection_select(
+    :tag_ids, Tag.all, :id, :name, {}, { multiple: true, class: 'chosen-select' }) %>
+  </div>
+
   <%= p.submit %>
 <% end %>
+
+
+<script>
+$('.chosen-select').chosen( { width: '300px',
+                              placeholder_text_multiple: 'Tags'} );
+</script>

@@ -6,10 +6,17 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-200.times do
-  Post.create({ title: Faker::Company.catch_phrase,
-                body:  Faker::Hacker.say_something_smart,
-                user_id: rand(4) })
+20.times do
+  Tag.create(name: Faker::Book.genre)
 end
 
-puts '200 Posts created!'
+tags = Tag.all
+puts '20 Tags created!✔️'
+
+50.times do
+  Post.create({ title: Faker::Company.catch_phrase,
+                body:  Faker::Hacker.say_something_smart,
+                tags: tags.sample(rand(2) + 1) })
+end
+
+puts '50 Posts created! 😁'

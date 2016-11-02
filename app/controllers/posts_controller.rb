@@ -16,7 +16,6 @@ class PostsController < ApplicationController
   end
 
   def create
-    post_params = params.require(:post).permit([:title, :body, :user_id])
     @post = Post.new post_params
     @post.user = current_user
     if @post.save
@@ -35,7 +34,6 @@ class PostsController < ApplicationController
   end
 
   def update
-    post_params = params.require(:post).permit(:title, :body)
     if @post.update post_params
       redirect_to post_path(@post), notice: 'Post updated! ✔️'
     else
@@ -52,6 +50,10 @@ class PostsController < ApplicationController
 
   def set_page
     @page = params[:page] || 0
+  end
+
+  def post_params
+    post_params = params.require(:post).permit([:title, :body, :user_id, tag_ids: []])
   end
 
   def find_post
