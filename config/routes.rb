@@ -13,5 +13,6 @@ Rails.application.routes.draw do
     get :favourite_posts, on: :collection
   end
   resources :passwords, only: [:edit, :update]
+  resources :tags, only: [:index, :show]
 
 end

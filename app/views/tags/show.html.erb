@@ -1,0 +1,7 @@
+<h1><%= @tag.name %></h1>
+<% @tag.posts.each do |p| %>
+  <div>
+    <%= link_to p.title, post_path(p) %>
+    <hr />
+  </div>
+<% end %>

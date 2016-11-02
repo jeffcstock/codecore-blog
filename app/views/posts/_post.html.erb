@@ -1,11 +1,30 @@
+<div class="post">
+  <h1><%= @post.title %></h1>
+
+
+
+  <%= pluralize @post.favourites.count, "favourite" %>
+
+
+
+  <h4>
+    <%= @post.user&.first_name %> <%= @post.user&.last_name %> &nbsp;| &nbsp;<%= @post.created_at.strftime("%d %b. %Y") %>
+  </h4>
+  <div class="post-body">
+    <p><%= @post.body %></p>
+  </div>
+</div>
+
 <section class='tag-widget'>
+  <h5>Tags</h5>
   <% @post.tags.each do |t| %>
-    <%= t.name %>
+    <%= link_to tag_path(t) do %>
+      <span class="tag">
+        <%= t.name %>
+      </span>
+    <% end %>
   <% end %>
 </section>
-<h1><%= @post.title %></h1>
-<p><%= @post.body %></p>
-<p><%= @post.user&.first_name %></p>
 
 <% if user_signed_in? && can?(:favourite, @post) %>
   <% if @fav.present? %>
@@ -14,7 +33,6 @@
     <%= link_to '❤️ Favourite this', post_favourites_path(@post), method: :post %>
   <% end %>
 <% end %>
-(<%= pluralize @post.favourites.count, "favourite" %>)
 <% if can? :manage, @post %>
   <%= link_to 'Edit blog post', edit_post_path(@post) %>
 |

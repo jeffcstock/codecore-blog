@@ -3,11 +3,12 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 $primary-font: 'Avenir';
+$secondary-font: 'FarnhamDisplay-Light';
 $background-color: white;
 $heading-font-color: rgb(111, 111, 111);
 $body-font-color: rgb(70, 70, 70);
 $light-medium: rgb(186, 186, 186);
-$link-color: rgb(40, 0, 198);
+$link-color: rgb(111, 111, 111);
 $radius: 0.3em;
 
 .container-fluid {
@@ -33,6 +34,7 @@ h5 {
 
 hr {
   border-top: .5px solid $light-medium;
+  margin-bottom: 2em;
 }
  nav {
 
@@ -95,4 +97,42 @@ hr {
   margin-bottom: 0.5em;
   padding-left: 1.5em;
   border-radius: $radius;
+}
+
+.tag {
+  border: 1px solid $light-medium;
+  color: $link-color;
+  font-size: 0.8em;
+  padding: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-right: 5px;
+  border-radius: $radius;
+  text-align: center;
+
+  &:hover {
+    border-color: $body-font-color;
+    cursor: pointer;
+    color: $body-font-color;
+  }
+}
+
+.tag-widget {
+  margin-bottom: 3em;
+  h5 {
+    color: $link-color;
+  }
+}
+
+.post {
+  h1 {
+    margin-bottom: 0.4em;
+  }
+  &-body {
+    width: 75%;
+    font-size: 1.4em;
+    color: $body-font-color;
+    line-height: 1.7;
+    font-family: $secondary-font;
+  }
 }
