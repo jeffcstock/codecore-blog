@@ -11,7 +11,7 @@ $light-medium: rgb(186, 186, 186);
 $link-color: rgb(111, 111, 111);
 $radius: 0.3em;
 $theme-color: rgb(4, 179, 137);
-$secondary-color: rgb(77, 122, 201);
+$secondary-color: rgb(55, 90, 150);
 
 .container-fluid {
   width: 80%;
@@ -91,17 +91,13 @@ hr {
   font-weight: bolder;
 }
 
-// .notice {
-//   border-color: rgb(12, 178, 231);
-// }
-
 .post-page-head {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
 }
 .search {
-  
+
 }
 
 .content {
