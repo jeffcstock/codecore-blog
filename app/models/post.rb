@@ -7,6 +7,9 @@ class Post < ApplicationRecord
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
 
+  has_many :stars, dependent: :destroy
+  has_many :star_raters, through: :stars, source: :user
+
   validates :title, presence: true,
                     uniqueness: {case_sensitive: false},
                     length: {minimum: 3}

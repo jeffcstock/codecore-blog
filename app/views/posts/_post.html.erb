@@ -2,13 +2,31 @@
   <h1><%= @post.title %></h1>
 
 
+  <section class="star-widget-display">
+    Post Average Rating: <%= average_star(@post) %>
+  </section>
 
-  <%= pluralize @post.favourites.count, "favourite" %>
-
+  <% if user_signed_in? && can?(:favourite, @post) %>
+    <% if @fav.present? %>
+      <%= link_to post_favourite_path(@post, @fav), method: :delete do %>
+        <i class="fa heart-selected fa-heart" aria-hidden="true"></i>
+      <% end %>
+    <% else %>
+      <%= link_to post_favourites_path(@post), method: :post do %>
+        <i class="fa heart fa-heart-o" aria-hidden="true"></i>
+      <% end %>
+    <% end %>
+     <%= pluralize @post.favourites.count, "favourite" %>
+  <% end %>
 
 
   <h4>
-    <%= @post.user&.first_name %> <%= @post.user&.last_name %> &nbsp;| &nbsp;<%= @post.created_at.strftime("%d %b. %Y") %>
+    <% if @post.user %>
+      <%= @post.user.first_name %> <%= @post.user.last_name %> &nbsp;
+    <% else %>
+      Anonymous &nbsp;
+    <% end %>
+    | &nbsp;<%= @post.created_at.strftime("%d %b. %Y") %>
   </h4>
   <div class="post-body">
     <p><%= @post.body %></p>
@@ -26,13 +44,12 @@
   <% end %>
 </section>
 
-<% if user_signed_in? && can?(:favourite, @post) %>
-  <% if @fav.present? %>
-    <%= link_to '💔 Unfavourite this', post_favourite_path(@post, @fav), method: :delete %>
-  <% else %>
-    <%= link_to '❤️ Favourite this', post_favourites_path(@post), method: :post %>
-  <% end %>
-<% end %>
+<section class="star-widget-rate">
+  Rate this post:
+  <%= display_star(@post) %>
+</section>
+
+
 <% if can? :manage, @post %>
   <%= link_to 'Edit blog post', edit_post_path(@post) %>
 |

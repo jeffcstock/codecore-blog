@@ -8,7 +8,7 @@ class FavouritesController < ApplicationController
     if cannot? :favourite, post
       redirect_to :back, notice: '❌Access denied❌'
     elsif favourite.save
-      redirect_to :back, notice: "✨Thanks for favouriting!✨"
+      redirect_to :back
     else
       redirect_to :back, alert: favourite.errors.full_messages.join(", ")
     end
@@ -18,7 +18,7 @@ class FavouritesController < ApplicationController
     favourite = Favourite.find params[:id]
     # question = favourite.question
     if favourite.destroy
-      redirect_to :back, notice: "😪 Favourite removed..."
+      redirect_to :back
     else
       redirect_to :back, alert: favourite.errors.full_messages.join(", ")
     end

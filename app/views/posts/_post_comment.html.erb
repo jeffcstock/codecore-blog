@@ -1,4 +1,4 @@
-<% if user_signed_in? && can?(:manage, @comment) %>
+<% if user_signed_in? %>
   <h2>Create a Comment</h2>
   <%= form_for [@post, @comment] do |f| %>
     <div>

@@ -4,7 +4,8 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :favourites, only: [:create, :destroy]
-    resources :comments, except: [:index]
+    resources :comments, only: [:new, :create, :destroy]
+    resources :stars, shallow: true, only: [:create, :destroy, :update]
   end
   resources :sessions, only: [:new, :create] do
     delete :destroy, on: :collection
