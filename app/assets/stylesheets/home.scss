@@ -12,6 +12,9 @@ $link-color: rgb(111, 111, 111);
 $radius: 0.3em;
 $theme-color: rgb(4, 179, 137);
 $secondary-color: rgb(55, 90, 150);
+$heart-color: rgb(223, 105, 105);
+$edit-color: rgb(195, 131, 57);
+$delete-color: rgb(204, 78, 74);
 
 .container-fluid {
   width: 80%;
@@ -38,9 +41,15 @@ hr {
   margin-bottom: 2em;
 }
 
+hr.main {
+  border: 0;
+  border-top: thick solid $light-medium;
+  margin-bottom: 0.5em;
+}
+
 .nav {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
 
   ul {
     padding: 0;
@@ -58,6 +67,7 @@ hr {
 
   }
 }
+
 
  .logo {
    font-size: 1.7em;
@@ -79,8 +89,24 @@ hr {
      border: 1px solid $body-font-color;
      cursor: pointer;
    }
+   &:focus {
+     outline: 0;
+   }
+
  }
 
+ textarea {
+   min-width: 60%;
+   min-height: 100px;
+   border-radius: $radius;
+   border-color: $light-medium;
+   font-size: 14px;
+   font-family: $primary-font;
+   padding: 10px;
+   &:focus {
+     outline: 0;
+   }
+ }
 
 .message {
   // border: 1px solid;
@@ -107,10 +133,26 @@ hr {
 }
 
 .comment {
-  // border: 1px solid $light-medium;
   margin-bottom: 0.5em;
-  padding-left: 1.5em;
-  // border-radius: $radius;
+  padding-left: 0.8em;
+  border-left: 1px solid $light-medium;
+  max-width: 70%;
+  h5 {
+    color: $body-font-color;
+    font-size: 1em;
+  }
+  .date {
+    color: darken($light-medium, 3%);
+    font-size: 0.8em;
+    padding-left: 0.5em;
+    font-weight: lighter;
+  }
+  &-delete {
+    font-size: 0.8em;
+    color: $light-medium;
+    // text-transform: uppercase;
+    font-weight: bolder;
+  }
 }
 
 .tag {
@@ -135,46 +177,121 @@ hr {
     font-size: 0.2em;
     text-transform: uppercase;
   }
-}
-
-.tag-widget {
-  margin-bottom: 3em;
-  h5 {
-    color: $link-color;
+  &-widget {
+    margin-bottom: 3em;
+    h5 {
+      color: $link-color;
+    }
   }
 }
+
 
 .star-widget {
   .fa {
     color: $light-medium;
   }
-  &-rate:hover {
-    color: $link-color;
+  &-rate {
+    padding-bottom: 3em;
+    &:hover {
+      color: $link-color;
+    }
   }
 }
 
 .heart {
   color: $light-medium;
+  font-size: 1.6em;
   &:hover {
-    color: $link-color;
+    color: $heart-color;
   }
   &-selected {
-    color: rgb(223, 105, 105);
+    color: $heart-color;
     &:hover {
       color: $light-medium;
     }
   }
 }
 
+.lightgrey {
+  color: $light-medium;
+}
+.medgray {
+  color: $link-color;
+}
+
+.favourite {
+  display: flex;
+  // align-items: center;
+}
+
 .post {
+  margin-bottom: 2em;
   h1 {
     margin-bottom: 0.4em;
   }
+  &-head {
+    display: flex;
+    justify-content: space-between;
+    width: 75%;
+    align-items: baseline;
+    h1 {
+      display: inline;
+      margin-top: 0;
+      max-width: 60%;
+    }
+  }
+
+  &-manage {
+    @extend .tag;
+    display: inline;
+  }
+
   &-body {
     width: 75%;
     font-size: 1.4em;
     color: $body-font-color;
     line-height: 1.7;
     font-family: $secondary-font;
+  }
+}
+
+.new-post-form {
+  .title input {
+    font-family: $secondary-font;
+    font-size: 20px;
+    min-height: auto;
+    max-width: 500px;
+    border: 0;
+    border-radius: 0;
+    border-left: 1px solid $light-medium;
+    cursor: auto;
+    &:focus {
+      border-color: $theme-color;
+    }
+  }
+  textarea {
+    font-family: $secondary-font;
+    font-size: 20px;
+    min-height: auto;
+    border: 0;
+    border-radius: 0;
+    border-left: 1px solid $light-medium;
+    &:focus {
+      border-color: $theme-color;
+    }
+  }
+}
+
+.edit {
+  &:hover {
+    border-color: $edit-color;
+    color: $edit-color;
+  }
+}
+
+.delete {
+  &:hover {
+    border-color: $delete-color;
+    color: $delete-color;
   }
 }

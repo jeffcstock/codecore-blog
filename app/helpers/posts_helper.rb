@@ -3,11 +3,11 @@ module PostsHelper
   def average_star(post)
     stars_array = []
     if post.stars.length != 0
-      full_star = (post.stars.map { |s| s.count }.sum / post.stars.length.to_f).round
-      full_star.times do
+      @full_star = (post.stars.map { |s| s.count }.sum / post.stars.length.to_f).round
+      @full_star.times do
         stars_array.push(fa_icon("star"))
       end
-      (5 - full_star).times do
+      (5 - @full_star).times do
         stars_array.push(fa_icon("star-o"))
       end
     else

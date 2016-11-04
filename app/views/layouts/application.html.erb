@@ -26,12 +26,12 @@
             <li><%= link_to 'Sign In', new_session_path %></li>
           <% end %>
         </ul>
+        <% if user_signed_in? %>
+        <div class="user-display">
+          <h4>Hello, <%= current_user.first_name %> <%= current_user.last_name %></h4>
+        </div>
+        <% end %>
       </div>
-      <% if user_signed_in? %>
-      <div class="user-display">
-        <h4>Hello, <%= current_user.first_name %> <%= current_user.last_name %></h4>
-      </div>
-      <% end %>
       <div class="message">
         <% if notice %>
           <div class="notice">

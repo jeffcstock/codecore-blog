@@ -1,23 +1,38 @@
 <div class="post">
-  <h1><%= @post.title %></h1>
+  <div class="post-head">
+    <h1><%= @post.title %></h1>
+
+    <% if user_signed_in? && can?(:favourite, @post) %>
+      <div class="favourite">
+        <% if @fav.present? %>
+          <%= link_to post_favourite_path(@post, @fav), method: :delete do %>
+            <span id="add-fav">Added to Favourites</span>&nbsp;&nbsp;<i class="fa heart heart-selected fa-heart" aria-hidden="true"></i> &nbsp;
+          <% end %>
+        <% else %>
+          <%= link_to post_favourites_path(@post), method: :post do %>
+            <i class="fa heart fa-heart-o" aria-hidden="true"></i>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if can? :manage, @post %>
+      <div>
+        <%= link_to edit_post_path(@post) do %>
+        <div class="edit post-manage">Edit</div>
+        <% end %>
+        <%= link_to post_path(@post), method: :delete, data: { confirm: 'Do you want to delete?'} do %>
+        <div class="delete post-manage">Delete</div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 
 
   <section class="star-widget-display">
-    Post Average Rating: <%= average_star(@post) %>
+    <%= @full_star %> <%= average_star(@post) %>
   </section>
-
-  <% if user_signed_in? && can?(:favourite, @post) %>
-    <% if @fav.present? %>
-      <%= link_to post_favourite_path(@post, @fav), method: :delete do %>
-        <i class="fa heart-selected fa-heart" aria-hidden="true"></i>
-      <% end %>
-    <% else %>
-      <%= link_to post_favourites_path(@post), method: :post do %>
-        <i class="fa heart fa-heart-o" aria-hidden="true"></i>
-      <% end %>
-    <% end %>
-     <%= pluralize @post.favourites.count, "favourite" %>
-  <% end %>
+  <br />
 
 
   <h4>
@@ -26,13 +41,18 @@
     <% else %>
       Anonymous &nbsp;
     <% end %>
-    | &nbsp;<%= @post.created_at.strftime("%d %b. %Y") %>
+    | &nbsp;<%= @post.created_at.strftime("%d %b %Y") %>
   </h4>
   <div class="post-body">
     <p><%= @post.body %></p>
   </div>
 </div>
 
+
+<section class="star-widget-rate">
+  Rate this post:
+  <%= display_star(@post) %>
+</section>
 <section class='tag-widget'>
   <h5>Tags</h5>
   <% @post.tags.each do |t| %>
@@ -43,15 +63,3 @@
     <% end %>
   <% end %>
 </section>
-
-<section class="star-widget-rate">
-  Rate this post:
-  <%= display_star(@post) %>
-</section>
-
-
-<% if can? :manage, @post %>
-  <%= link_to 'Edit blog post', edit_post_path(@post) %>
-|
-  <%= link_to 'Delete blog post', post_path(@post), method: :delete, data: { confirm: 'Do you want to delete?'} %>
-<% end %>

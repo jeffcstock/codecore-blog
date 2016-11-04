@@ -1,19 +1,19 @@
-<%= form_for @post do |p| %>
-  <div>
-    <%= p.label :title %>
-    <%= p.text_field :title %>
-  </div>
-  <div>
-    <%= p.label :body %>
+<div class="new-post-form">
+  <%= form_for @post do |p| %>
+    <div><%= p.label :title %></div>
+    <div class="title"><%= p.text_field :title %></div>
+    <br />
+    <div><%= p.label :body %></div>
     <%= p.text_area :body %>
-  </div>
-  <div>
-    <%= p.collection_select(
-    :tag_ids, Tag.all, :id, :name, {}, { multiple: true, class: 'chosen-select' }) %>
-  </div>
-
-  <%= p.submit %>
-<% end %>
+    <br />
+    <div>
+      <%= p.collection_select(
+      :tag_ids, Tag.all, :id, :name, {}, { multiple: true, class: 'chosen-select' }) %>
+    </div>
+    <br />
+    <div><%= p.submit %></div>
+  <% end %>
+</div>
 
 
 <script>
