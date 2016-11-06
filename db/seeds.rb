@@ -7,11 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 20.times do
-  Tag.create(name: Faker::Book.genre)
+  Tag.create!(name: Faker::Book.genre)
 end
 
 5.times do
-  User.create({
+  User.create!({
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     email: Faker::Internet.email,
@@ -24,12 +24,12 @@ users = User.all
 puts '20 Tags created!✔️'
 
 50.times do
-  p = Post.create({ title: Faker::Company.catch_phrase,
+  p = Post.create!({ title: Faker::Company.catch_phrase,
                 body:  Faker::Hacker.say_something_smart,
                 tags: tags.sample(rand(2) + 1) })
 
   p.stars = users.map { |u| Star.new(count: rand(6), user: u, post: p)}
-  
+
 end
 
 puts '50 Posts, 20 Tags, and 5 Users created! ✨😁✨'
