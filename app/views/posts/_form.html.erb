@@ -4,15 +4,16 @@
     <div class="title"><%= p.text_field :title %></div>
     <br />
     <div><%= p.label :body %></div>
-    <%= p.text_area :body %>
+    <div id='new-post-body'><%= p.text_area :body %></div>
     <br />
+
     <div>
       <%= p.collection_select(
       :tag_ids, Tag.all, :id, :name, {}, { multiple: true, class: 'chosen-select' }) %>
     </div>
     <br />
     <div><%= p.submit %></div>
-  <% end %>
+    <% end %>
 </div>
 
 

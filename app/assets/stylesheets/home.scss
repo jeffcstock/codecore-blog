@@ -59,10 +59,9 @@ hr.main {
     display: inline;
     margin-right: 0.3em;
     padding: 0 0.5em 0.3em 0.5em;
-    border-bottom: 1px solid $light-medium;
 
-    &:hover {
-      border-color: $secondary-color;
+    a:hover {
+      color: $secondary-color;
     }
 
   }
@@ -70,7 +69,7 @@ hr.main {
 
 
  .logo {
-   font-size: 1.7em;
+   font-size: 2.5em;
    padding-bottom: .3em;
    font-weight: bold;
  }
@@ -102,6 +101,7 @@ hr.main {
    border-color: $light-medium;
    font-size: 14px;
    font-family: $primary-font;
+   resize: none;
    padding: 10px;
    &:focus {
      outline: 0;
@@ -141,6 +141,10 @@ hr.main {
     color: $body-font-color;
     font-size: 1em;
   }
+
+  .comments {
+    margin-bottom: 4em;
+  }
   .date {
     color: darken($light-medium, 3%);
     font-size: 0.8em;
@@ -174,9 +178,9 @@ hr.main {
 
   &-header {
     color: $light-medium;
-    font-size: 0.2em;
-    text-transform: uppercase;
-  }
+    font-size: 0.7em;
+    padding-left: 2em;
+    }
   &-widget {
     margin-bottom: 3em;
     h5 {
@@ -198,6 +202,13 @@ hr.main {
   }
 }
 
+#favourite {
+  position: sticky;
+  left: 5%;
+  top: 40px;
+  display: none;
+  // top: 10px;
+}
 .heart {
   color: $light-medium;
   font-size: 1.6em;
@@ -219,13 +230,10 @@ hr.main {
   color: $link-color;
 }
 
-.favourite {
-  display: flex;
-  // align-items: center;
-}
 
 .post {
   margin-bottom: 2em;
+  margin-top: 2em;
   h1 {
     margin-bottom: 0.4em;
   }
@@ -279,8 +287,11 @@ hr.main {
     &:focus {
       border-color: $theme-color;
     }
+
   }
 }
+
+
 
 .edit {
   &:hover {

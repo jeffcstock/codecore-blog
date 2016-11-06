@@ -1,20 +1,21 @@
 <div class="post">
+  <% if user_signed_in? && can?(:favourite, @post) %>
+    <div id="favourite">
+      <% if @fav.present? %>
+        <%= link_to post_favourite_path(@post, @fav), method: :delete do %>
+        &nbsp;&nbsp;<i class="fa heart heart-selected fa-heart" aria-hidden="true"></i> &nbsp;<span id="add-fav"></span>
+      <% end %>
+      <% else %>
+      <%= link_to post_favourites_path(@post), method: :post do %>
+      <i class="fa heart fa-heart-o" aria-hidden="true"></i>
+      <% end %>
+      <% end %>
+    </div>
+
+  <% end %>
   <div class="post-head">
     <h1><%= @post.title %></h1>
 
-    <% if user_signed_in? && can?(:favourite, @post) %>
-      <div class="favourite">
-        <% if @fav.present? %>
-          <%= link_to post_favourite_path(@post, @fav), method: :delete do %>
-            <span id="add-fav">Added to Favourites</span>&nbsp;&nbsp;<i class="fa heart heart-selected fa-heart" aria-hidden="true"></i> &nbsp;
-          <% end %>
-        <% else %>
-          <%= link_to post_favourites_path(@post), method: :post do %>
-            <i class="fa heart fa-heart-o" aria-hidden="true"></i>
-          <% end %>
-        <% end %>
-      </div>
-    <% end %>
 
     <% if can? :manage, @post %>
       <div>
