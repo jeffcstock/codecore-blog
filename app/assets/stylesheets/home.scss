@@ -12,7 +12,8 @@ $link-color: rgb(111, 111, 111);
 $radius: 0.3em;
 $theme-color: rgb(4, 179, 137);
 $secondary-color: rgb(55, 90, 150);
-$heart-color: rgb(223, 105, 105);
+$heart-color: lighten(rgb(223, 105, 105), 20%);
+$heart-color-hover: rgb(223, 105, 105);
 $edit-color: rgb(195, 131, 57);
 $delete-color: rgb(204, 78, 74);
 
@@ -202,23 +203,24 @@ hr.main {
   }
 }
 
-#favourite {
-  position: sticky;
+#favbutton {
+  position: fixed;
   left: 5%;
-  top: 40px;
+  top: 35%;
+  font-size: 1.6em;
   display: none;
+  transition: display 3s, color 0.5s;
   // top: 10px;
 }
 .heart {
   color: $light-medium;
-  font-size: 1.6em;
   &:hover {
-    color: $heart-color;
+    color: $heart-color-hover;
   }
   &-selected {
     color: $heart-color;
     &:hover {
-      color: $light-medium;
+      color: $heart-color-hover;
     }
   }
 }

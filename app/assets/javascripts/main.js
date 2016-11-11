@@ -13,8 +13,10 @@
 
 $(document).ready(function(){
 
-  $(window).on('scroll', function(event) {
-    $('#favourite').fadeIn(800);
-  });
-
+    $(window).scroll(function(){
+        $('#favbutton').fadeIn(600);
+        setTimeout(function(){
+          $('#favbutton').fadeOut(600);
+        }, 3000);
+    });
 });

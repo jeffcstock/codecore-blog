@@ -6,7 +6,10 @@ class StarsController < ApplicationController
     star.user = current_user
     star.post = post
     star.save
-    redirect_to post_path(post)
+    respond_to do |format|
+      format.html {redirect_to post_path(post)}
+      format.js { render }
+    end
   end
 
   def destroy
@@ -16,9 +19,12 @@ class StarsController < ApplicationController
   end
 
   def update
-    post = star.post
+    @post = star.post
     star.update star_params
-    redirect_to post_path(post)
+    respond_to do |format|
+      format.js { render }
+      format.html { redirect_to post_path(post) }
+    end
   end
 
   private
