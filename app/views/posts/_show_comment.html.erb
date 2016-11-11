@@ -1,25 +1,10 @@
 <div class='comments'>
   <% unless @post.comments.empty? %>
     <h2>Comments</h2>
-    <% @post.comments.each do |p| %>
-      <div class="comment">
-        <% if p.user %>
-          <div>
-            <h5><%= p.user.first_name %>
-              <%= p.user.last_name %>
-              <span class="date"><%= p.created_at.strftime("%d %b %Y") %></span>
-            </h5>
-          </div>
-        <% end %>
-        <div>
-          <p><%= p.body  %></p>
-        </div>
-        <% if can? :delete, p %>
-          <div class="comment-delete">
-            <%= link_to 'Delete', post_comment_path(@post, p), method: :delete, data: { confirm: 'You sure you wanna delete this amazing comment??'} %>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
+    <div id="comments">
+      <% @post.comments.latest_first.each do |p| %>
+        <%= render '/comments/comment', { p: p }  %>
+      <% end %>
+    </div>
   <% end %>
 </div>

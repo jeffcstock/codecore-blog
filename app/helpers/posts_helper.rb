@@ -48,13 +48,13 @@ module PostsHelper
     links = []
 
     1.upto(star_count) do |i|
-      links << link_to(fa_icon('star'), path(post, star, i), method: method)
+      links << link_to(fa_icon('star'), path(post, star, i),remote: true, method: method)
     end
 
     blank.upto(5) do |i|
-      links << link_to(fa_icon('star-o'), path(post, star, i), method: method)
+      links << link_to(fa_icon('star-o'), path(post, star, i), remote: true,  method: method)
     end
 
-    safe_join(links, ' ')
+    raw "<div class=\"stars_button\">#{safe_join(links, ' ')}</div>"
   end
 end

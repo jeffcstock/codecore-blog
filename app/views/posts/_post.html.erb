@@ -1,15 +1,8 @@
 <div class="post">
   <% if user_signed_in? && can?(:favourite, @post) %>
-    <div id="favourite">
-      <% if @fav.present? %>
-        <%= link_to post_favourite_path(@post, @fav), method: :delete do %>
-        &nbsp;&nbsp;<i class="fa heart heart-selected fa-heart" aria-hidden="true"></i> &nbsp;<span id="add-fav"></span>
-      <% end %>
-      <% else %>
-      <%= link_to post_favourites_path(@post), method: :post do %>
-      <i class="fa heart fa-heart-o" aria-hidden="true"></i>
-      <% end %>
-      <% end %>
+
+    <div id="favbutton">
+      <%= render 'favourites/button', fav: @fav %>
     </div>
 
   <% end %>
@@ -54,6 +47,7 @@
   Rate this post:
   <%= display_star(@post) %>
 </section>
+
 <section class='tag-widget'>
   <h5>Tags</h5>
   <% @post.tags.each do |t| %>
