@@ -27,6 +27,10 @@ class Post < ApplicationRecord
     end
   end
 
+  def user_full_name
+    user ? "#{self.user.first_name} #{self.user.last_name}" : nil
+  end
+
   def fav_for(user)
     favourites.find_by(user: user)
   end

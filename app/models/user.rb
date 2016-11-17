@@ -20,6 +20,9 @@ class User < ApplicationRecord
 
   private
 
+  def user_full_name
+    "#{self.first_name} #{self.last_name}"
+  end
   def downcase_email
     self.email.downcase! if email.present?
   end
