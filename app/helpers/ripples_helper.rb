@@ -1,0 +1,2 @@
+module RipplesHelper
+end

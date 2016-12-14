@@ -1,0 +1,22 @@
+<div class="comment" id="<%= dom_id(p) %>">
+  <% if p.user %>
+    <div>
+      <h5><%= p.user.first_name %>
+        <%= p.user.last_name %>
+        <span class="date"><%= p.created_at.strftime("%d %b %Y") %></span>
+      </h5>
+    </div>
+  <% end %>
+  <div>
+    <p><%= p.body  %></p>
+  </div>
+  <% if can? :delete, p %>
+    <div class="comment-delete">
+      <%= link_to 'Delete',
+      post_comment_path(@post, p),
+      method: :delete,
+      remote: true,
+      data: { confirm: 'You sure you wanna delete this amazing comment??'} %>
+    </div>
+  <% end %>
+</div>

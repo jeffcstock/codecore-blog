@@ -1,0 +1,60 @@
+<div class="post">
+  <% if user_signed_in? && can?(:favourite, @post) %>
+
+    <div id="favbutton">
+      <%= render 'favourites/button', fav: @fav %>
+    </div>
+
+  <% end %>
+  <div class="post-head">
+    <h1><%= @post.title %></h1>
+
+
+    <% if can? :manage, @post %>
+      <div>
+        <%= link_to edit_post_path(@post) do %>
+        <div class="edit post-manage">Edit</div>
+        <% end %>
+        <%= link_to post_path(@post), method: :delete, data: { confirm: 'Do you want to delete?'} do %>
+        <div class="delete post-manage">Delete</div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+
+  <section class="star-widget-display">
+    <%= @full_star %> <%= average_star(@post) %>
+  </section>
+  <br />
+
+
+  <h4>
+    <% if @post.user %>
+      <%= @post.user.first_name %> <%= @post.user.last_name %> &nbsp;
+    <% else %>
+      Anonymous &nbsp;
+    <% end %>
+    | &nbsp;<%= @post.created_at.strftime("%d %b %Y") %>
+  </h4>
+  <div class="post-body">
+    <p><%= @post.body %></p>
+  </div>
+</div>
+
+
+<section class="star-widget-rate">
+  Rate this post:
+  <%= display_star(@post) %>
+</section>
+
+<section class='tag-widget'>
+  <h5>Tags</h5>
+  <% @post.tags.each do |t| %>
+    <%= link_to tag_path(t) do %>
+      <span class="tag">
+        <%= t.name %>
+      </span>
+    <% end %>
+  <% end %>
+</section>

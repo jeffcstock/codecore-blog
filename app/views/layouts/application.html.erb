@@ -6,11 +6,47 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
   </head>
 
   <body>
-    <%= link_to 'Home', home_path %>
-    <%= link_to 'About', about_path %>
-    <%= yield %>
+    <div class="container-fluid">
+      <div class="logo">
+        <%= link_to 'Blog', root_path %>
+      </div>
+      <div class="nav">
+        <ul>
+          <li><%= link_to 'Posts', posts_path %></li>
+          <li><%= link_to 'New Post', new_post_path %></li>
+          <% if user_signed_in? %>
+            <li><%= link_to 'User Settings', edit_user_path(current_user) %></li>
+            <li><%= link_to 'Favourite Blog Posts', favourite_posts_users_path %></li>
+            <li><%= link_to 'Sign out', sessions_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to 'Sign Up', new_user_path %></li>
+            <li><%= link_to 'Sign In', new_session_path %></li>
+          <% end %>
+        </ul>
+        <% if user_signed_in? %>
+        <div class="user-display">
+          <h4>Hello, <%= current_user.first_name %> <%= current_user.last_name %></h4>
+        </div>
+        <% end %>
+      </div>
+      <div class="message">
+        <% if notice %>
+          <div class="notice">
+            <%= notice %>
+          </div>
+        <% elsif alert %>
+          <div class="alert">
+            <%= alert %>
+          </div>
+        <% end %>
+      </div>
+      <div class="content">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

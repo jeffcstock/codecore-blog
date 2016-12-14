@@ -1,0 +1,6 @@
+<h1>Your Favourite Posts</h1>
+
+<% @favourites.each do |f| %>
+  <p><%= link_to f.title, post_path(f) %></p>
+  <hr />
+<% end %>

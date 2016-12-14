@@ -1,0 +1,18 @@
+<h1>Edit Password</h1>
+<%= form_for @user, url: password_path(@user) do |f| %>
+  <div>
+    <%= f.label :current_password %>
+    <%= f.password_field :current_password %>
+  </div>
+  <div>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  <div>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div>
+    <%= submit_tag 'Change Password' %>
+  </div>
+<% end %>

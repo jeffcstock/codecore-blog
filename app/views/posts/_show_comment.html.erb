@@ -1,0 +1,10 @@
+<div class='comments'>
+  <% unless @post.comments.empty? %>
+    <h2>Comments</h2>
+    <div id="comments">
+      <% @post.comments.latest_first.each do |p| %>
+        <%= render '/comments/comment', { p: p }  %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
